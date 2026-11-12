@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profitness - Academia | Santo Ângelo - RS</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Montserrat & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;0,900;1,900&family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            yellow: '#FFD700',
+                            gold: '#F59E0B',
+                            dark: '#0D0D0D',
+                            card: '#18181B',
+                            muted: '#A1A1AA'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                        display: ['Montserrat', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom scrollbar and animations */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0d0d0d;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #f59e0b;
+            border-radius: 4px;
+        }
+        .glow-hover:hover {
+            box-shadow: 0 0 25px rgba(245, 158, 11, 0.4);
+        }
+        .bg-hero {
+            background: linear-gradient(180deg, rgba(13, 13, 13, 0.75) 0%, rgba(13, 13, 13, 1) 100%), 
+                        url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=1920&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+        }
+        .glass-card {
+            background: rgba(24, 24, 27, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+    </style>
+</head>
+<body class="bg-brand-dark text-gray-100 font-sans antialiased selection:bg-brand-gold selection:text-black">
+
+    <!-- HEADER / NAVIGATION -->
+    <header class="fixed top-0 left-0 w-full z-50 glass-card transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                
+                <!-- Logo -->
+                <a href="#" class="flex items-center gap-2 group">
+                    <div class="bg-brand-gold text-black p-2 rounded-lg font-black text-xl flex items-center justify-center transform group-hover:rotate-6 transition-transform">
+                        <i class="fa-solid => fa-dumbbell text-2xl"></i>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="font-display font-black text-2xl tracking-wider text-white uppercase leading-none">
+                            PRO<span class="text-brand-gold">FITNESS</span>
+                        </span>
+                        <span class="text-[10px] tracking-widest text-gray-400 uppercase font-semibold">ACADEMIA</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Nav -->
+                <nav class="hidden md:flex items-center gap-8 text-sm font-semibold uppercase tracking-wider">
+                    <a href="#inicio" class="text-brand-gold transition-colors hover:text-brand-yellow">Início</a>
+                    <a href="#sobre" class="hover:text-brand-gold transition-colors">Sobre</a>
+                    <a href="#modalidades" class="hover:text-brand-gold transition-colors">Modalidades</a>
+                    <a href="#horarios" class="hover:text-brand-gold transition-colors">Horários</a>
+                    <a href="#planos" class="hover:text-brand-gold transition-colors">Planos</a>
+                    <a href="#contato" class="hover:text-brand-gold transition-colors">Contato</a>
+                </nav>
+
+                <!-- CTA Button -->
+                <div class="hidden md:block">
+                    <a href="https://wa.me/5555984063933?text=Olá!%20Gostaria%20de%20agendar%20uma%20aula%20experimental%20na%20Profitness." 
+                       target="_blank" 
+                       class="bg-gradient-to-r from-brand-gold to-yellow-500 hover:from-yellow-500 hover:to-brand-gold text-black font-bold px-5 py-2.5 rounded-full shadow-lg hover:shadow-yellow-500/30 transition-all duration-300 transform hover:-translate-y-0.5 flex items-center gap-2 text-sm uppercase">
+                        <i class="fa-brands fa-whatsapp text-lg"></i>
+                        <span>Aula Experimental</span>
+                    </a>
+                </div>
+
+                <!-- Mobile menu button -->
+                <button id="mobile-menu-btn" class="md:hidden text-gray-300 hover:text-white focus:outline-none p-2">
+                    <i class="fa-solid fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-brand-card border-b border-gray-800">
+            <div class="px-4 pt-2 pb-6 space-y-3 font-semibold uppercase tracking-wider text-sm">
+                <a href="#inicio" class="mobile-link block py-2 text-brand-gold">Início</a>
+                <a href="#sobre" class="mobile-link block py-2 hover:text-brand-gold">Sobre</a>
+                <a href="#modalidades" class="mobile-link block py-2 hover:text-brand-gold">Modalidades</a>
+                <a href="#horarios" class="mobile-link block py-2 hover:text-brand-gold">Horários</a>
+                <a href="#planos" class="mobile-link block py-2 hover:text-brand-gold">Planos</a>
+                <a href="#contato" class="mobile-link block py-2 hover:text-brand-gold">Contato</a>
+                <a href="https://wa.me/5555984063933?text=Olá!%20Gostaria%20de%20agendar%20uma%20aula%20experimental%20na%20Profitness." 
+                   target="_blank" 
+                   class="block text-center bg-brand-gold text-black font-bold py-3 rounded-lg mt-4">
+                    <i class="fa-brands fa-whatsapp text-lg mr-2"></i> Agendar Aula Experimental
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section id="inicio" class="min-h-screen bg-hero flex items-center pt-24 pb-16 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
+            <div class="max-w-3xl">
+                <div class="inline-flex items-center gap-2 bg-brand-gold/10 border border-brand-gold/30 text-brand-gold px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest mb-6">
+                    <span class="w-2 h-2 rounded-full bg-brand-gold animate-ping"></span>
+                    A melhor estrutura em Santo Ângelo - RS
+                </div>
+                <h1 class="font-display text-4xl sm:text-6xl lg:text-7xl font-black uppercase tracking-tight text-white leading-none mb-6">
+                    TRANSFORME SEU <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-gold via-yellow-400 to-yellow-200">CORPO</span> E SUA MENTE.
+                </h1>
+                <p class="text-gray-300 text-lg sm:text-xl font-light mb-8 max-w-2xl leading-relaxed">
+                    Treine com equipamentos modernos, acompanhamento profissional qualificado e um ambiente motivador feito para você alcançar seus melhores resultados.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="https://wa.me/5555984063933?text=Olá!%20Quero%20começar%20a%20treinar%20na%20Profitness." 
+                       target="_blank"
+                       class="bg-brand-gold hover:bg-yellow-400 text-black font-extrabold text-center px-8 py-4 rounded-xl shadow-xl shadow-brand-gold/20 hover:shadow-brand-gold/40 transition-all duration-300 transform hover:-translate-y-1 uppercase tracking-wider text-base">
+                        Comece Agora Mesmo
+                    </a>
+                    <a href="#modalidades" 
+                       class="border-2 border-gray-600 hover:border-brand-gold text-white hover:text-brand-gold font-bold text-center px-8 py-4 rounded-xl transition-all duration-300 uppercase tracking-wider text-base bg-black/30 backdrop-blur-sm">
+                        Conhecer Modalidades
+                    </a>
+                </div>
+
+                <!-- Info badges -->
+                <div class="grid grid-cols-2 sm:grid-cols-3 gap-6 mt-16 pt-8 border-t border-gray-800">
+                    <div>
+                        <span class="block text-3xl font-black text-brand-gold font-display">100%</span>
+                        <span class="text-xs text-gray-400 uppercase font-semibold">Foco em Resultados</span>
+                    </div>
+                    <div>
+                        <span class="block text-3xl font-black text-brand-gold font-display">+10</span>
+                        <span class="text-xs text-gray-400 uppercase font-semibold">Anos de Tradição</span>
+                    </div>
+                    <div class="col-span-2 sm:col-span-1">
+                        <span class="block text-3xl font-black text-brand-gold font-display">TOP</span>
+                        <span class="text-xs text-gray-400 uppercase font-semibold">Equipamentos Premium</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SOBRE NÓS SECTION -->
+    <section id="sobre" class="py-24 bg-brand-dark relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <!-- Visual Box -->
+                <div class="relative">
+                    <div class="relative z-10 rounded-2xl overflow-hidden shadow-2xl border border-gray-800">
+                        <img src="https://images.unsplash.com/photo-1517838277536-f5f99be501cd?q=80&w=1000&auto=format&fit=crop" alt="Ambiente Profitness Academia" class="w-full h-auto object-cover transform hover:scale-105 transition-transform duration-700">
+                    </div>
+                    <!-- Decorative Element -->
+                    <div class="absolute -bottom-6 -right-6 w-full h-full border-2 border-brand-gold rounded-2xl -z-10 hidden sm:block"></div>
+                    <div class="absolute top-1/2 -left-8 bg-brand-gold text-black p-6 rounded-2xl font-black text-center shadow-2xl hidden md:block">
+                        <span class="block text-4xl font-display">BEM</span>
+                        <span class="block text-sm uppercase">Vindo à Profitness</span>
+                    </div>
+                </div>
+
+                <!-- Content -->
+                <div>
+                    <div class="inline-block text-brand-gold font-bold uppercase tracking-widest text-xs mb-2">Sobre a Nossa Academia</div>
+                    <h2 class="font-display text-3xl sm:text-4xl font-black uppercase tracking-tight text-white mb-6 leading-tight">
+                        Muito mais que uma academia, o seu estilo de vida!
+                    </h2>
+                    <p class="text-gray-400 mb-6 leading-relaxed">
+                        Localizada no bairro Dido em Santo Ângelo - RS, a **Profitness - Academia** foi projetada para oferecer a melhor experiência em saúde, bem-estar e alta performance física.
+                    </p>
+                    <p class="text-gray-400 mb-8 leading-relaxed">
+                        Nossa missão é proporcionar um ambiente acolhedor, motivador e equipado com tudo o que você precisa para superar seus limites, seja você iniciante ou um atleta experiente.
+                    </p>
+
+                    <!-- Features Grid -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="flex items-start gap-3 bg-brand-card p-4 rounded-xl border border-gray-800">
+                            <i class="fa-solid fa-circle-check text-brand-gold text-xl mt-0.5"></i>
+                            <div>
+                                <h4 class="font-bold text-white text-sm">Instrutores Qualificados</h4>
+                                <p class="text-xs text-gray-400">Acompanhamento personalizado em seus treinos.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3 bg-brand-card p-4 rounded-xl border border-gray-800">
+                            <i class="fa-solid fa-circle-check text-brand-gold text-xl mt-0.5"></i>
+                            <div>
+                                <h4 class="font-bold text-white text-sm">Ambiente Climatizado</h4>
+                                <p class="text-xs text-gray-400">Conforto total para seus treinos em qualquer estação.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3 bg-brand-card p-4 rounded-xl border border-gray-800">
+                            <i class="fa-solid fa-circle-check text-brand-gold text-xl mt-0.5"></i>
+                            <div>
+                                <h4 class="font-bold text-white text-sm">Aparelhos Modernos</h4>
+                                <p class="text-xs text-gray-400">Maquinário biomecanicamente projetado.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3 bg-brand-card p-4 rounded-xl border border-gray-800">
+                            <i class="fa-solid fa-circle-check text-brand-gold text-xl mt-0.5"></i>
+                            <div>
+                                <h4 class="font-bold text-white text-sm">Localização Fácil</h4>
+                                <p class="text-xs text-gray-400">Fácil acesso na R. Duque de Caxias, 1280.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MODALIDADES SECTION -->
+    <section id="modalidades" class="py-24 bg-[#121214] relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-brand-gold font-bold uppercase tracking-widest text-xs">Nossos Serviços</span>
+                <h2 class="font-display text-3xl sm:text-5xl font-black uppercase tracking-tight text-white mt-2">
+                    MODALIDADES PARA SEU OBJETIVO
+                </h2>
+                <p class="text-gray-400 mt-4">Escolha a atividade que mais combina com você e comece hoje mesmo a transformar sua rotina.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Card 1: Musculação -->
+                <div class="bg-brand-card rounded-2xl overflow-hidden border border-gray-800 hover:border-brand-gold/50 transition-all duration-300 group hover:-translate-y-2 glow-hover flex flex-col">
+                    <div class="h-48 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?q=80&w=800&auto=format&fit=crop" alt="Musculação" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-brand-card via-transparent to-transparent"></div>
+                        <div class="absolute top-4 right-4 bg-brand-gold text-black p-2 rounded-lg font-bold">
+                            <i class="fa-solid fa-dumbbell text-lg"></i>
+                        </div>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h3 class="font-display font-bold text-xl text-white uppercase group-hover:text-brand-gold transition-colors">Musculação</h3>
+                            <p class="text-gray-400 text-sm mt-3 leading-relaxed">
+                                Ganho de massa muscular, hipertrofia e fortalecimento articular com fichas customizadas e orientação dedicada.
+                            </p>
+                        </div>
+                        <a href="https://wa.me/5555984063933?text=Olá!%20Quero%20saber%20mais%20sobre%20a%20Musculação." target="_blank" class="inline-flex items-center gap-2 text-brand-gold font-bold text-sm uppercase mt-6 group-hover:translate-x-1 transition-transform">
+                            Saber Mais <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Card 2: Treinamento Funcional -->
+                <div class="bg-brand-card rounded-2xl overflow-hidden border border-gray-800 hover:border-brand-gold/50 transition-all duration-300 group hover:-translate-y-2 glow-hover flex flex-col">
+                    <div class="h-48 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?q=80&w=800&auto=format&fit=crop" alt="Treinamento Funcional" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-brand-card via-transparent to-transparent"></div>
+                        <div class="absolute top-4 right-4 bg-brand-gold text-black p-2 rounded-lg font-bold">
+                            <i class="fa-solid fa-person-running text-lg"></i>
+                        </div>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h3 class="font-display font-bold text-xl text-white uppercase group-hover:text-brand-gold transition-colors">Treinamento Funcional</h3>
+                            <p class="text-gray-400 text-sm mt-3 leading-relaxed">
+                                Exercícios dinâmicos que desenvolvem agilidade, equilíbrio, resistência e força para as atividades do dia a dia.
+                            </p>
+                        </div>
+                        <a href="https://wa.me/5555984063933?text=Olá!%20Quero%20saber%20mais%20sobre%20o%20Treinamento%20Funcional." target="_blank" class="inline-flex items-center gap-2 text-brand-gold font-bold text-sm uppercase mt-6 group-hover:translate-x-1 transition-transform">
+                            Saber Mais <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Card 3: HIIT -->
+                <div class="bg-brand-card rounded-2xl overflow-hidden border border-gray-800 hover:border-brand-gold/50 transition-all duration-300 group hover:-translate-y-2 glow-hover flex flex-col">
+                    <div class="h-48 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1517963879433-6ad2b056d712?q=80&w=800&auto=format&fit=crop" alt="HIIT" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-brand-card via-transparent to-transparent"></div>
+                        <div class="absolute top-4 right-4 bg-brand-gold text-black p-2 rounded-lg font-bold">
+                            <i class="fa-solid fa-fire text-lg"></i>
+                        </div>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h3 class="font-display font-bold text-xl text-white uppercase group-hover:text-brand-gold transition-colors">HIIT / Cardio Intenso</h3>
+                            <p class="text-gray-400 text-sm mt-3 leading-relaxed">
+                                Treinos intervalados de alta intensidade ideais para queima de gordura rápida e aceleração metabólica.
+                            </p>
+                        </div>
+                        <a href="https://wa.me/5555984063933?text=Olá!%20Quero%20saber%20mais%20sobre%20os%20treinos%20de%20HIIT." target="_blank" class="inline-flex items-center gap-2 text-brand-gold font-bold text-sm uppercase mt-6 group-hover:translate-x-1 transition-transform">
+                            Saber Mais <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Card 4: FitDance / Dança -->
+                <div class="bg-brand-card rounded-2xl overflow-hidden border border-gray-800 hover:border-brand-gold/50 transition-all duration-300 group hover:-translate-y-2 glow-hover flex flex-col">
+                    <div class="h-48 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1524594152303-9fd13543fe6e?q=80&w=800&auto=format&fit=crop" alt="FitDance e Dança" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-brand-card via-transparent to-transparent"></div>
+                        <div class="absolute top-4 right-4 bg-brand-gold text-black p-2 rounded-lg font-bold">
+                            <i class="fa-solid fa-music text-lg"></i>
+                        </div>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h3 class="font-display font-bold text-xl text-white uppercase group-hover:text-brand-gold transition-colors">FitDance & Ritmos</h3>
+                            <p class="text-gray-400 text-sm mt-3 leading-relaxed">
+                                Queime calorias se divertindo com as coreografias do momento em aulas animadas e cheias de energia.
+                            </p>
+                        </div>
+                        <a href="https://wa.me/5555984063933?text=Olá!%20Quero%20saber%20mais%20sobre%20as%20aulas%20de%20Dança/FitDance." target="_blank" class="inline-flex items-center gap-2 text-brand-gold font-bold text-sm uppercase mt-6 group-hover:translate-x-1 transition-transform">
+                            Saber Mais <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Card 5: Personal Trainer -->
+                <div class="bg-brand-card rounded-2xl overflow-hidden border border-gray-800 hover:border-brand-gold/50 transition-all duration-300 group hover:-translate-y-2 glow-hover flex flex-col">
+                    <div class="h-48 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=80&w=800&auto=format&fit=crop" alt="Personal Trainer" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-brand-card via-transparent to-transparent"></div>
+                        <div class="absolute top-4 right-4 bg-brand-gold text-black p-2 rounded-lg font-bold">
+                            <i class="fa-solid fa-user-ninja text-lg"></i>
+                        </div>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h3 class="font-display font-bold text-xl text-white uppercase group-hover:text-brand-gold transition-colors">Personal Trainer</h3>
+                            <p class="text-gray-400 text-sm mt-3 leading-relaxed">
+                                Atenção 100% exclusiva para acelerar seus resultados com máxima eficiência e segurança.
+                            </p>
+                        </div>
+                        <a href="https://wa.me/5555984063933?text=Olá!%20Tenho%20interesse%20em%20Personal%20Trainer." target="_blank" class="inline-flex items-center gap-2 text-brand-gold font-bold text-sm uppercase mt-6 group-hover:translate-x-1 transition-transform">
+                            Saber Mais <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Card 6: Avaliação Física -->
+                <div class="bg-brand-card rounded-2xl overflow-hidden border border-gray-800 hover:border-brand-gold/50 transition-all duration-300 group hover:-translate-y-2 glow-hover flex flex-col">
+                    <div class="h-48 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1576678927484-cc909d51963a?q=80&w=800&auto=format&fit=crop" alt="Avaliação Física" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-brand-card via-transparent to-transparent"></div>
+                        <div class="absolute top-4 right-4 bg-brand-gold text-black p-2 rounded-lg font-bold">
+                            <i class="fa-solid fa-heart-pulse text-lg"></i>
+                        </div>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h3 class="font-display font-bold text-xl text-white uppercase group-hover:text-brand-gold transition-colors">Avaliação Física</h3>
+                            <p class="text-gray-400 text-sm mt-3 leading-relaxed">
+                                Análise completa de bioimpedância, dobras cutâneas e métricas de desempenho para acompanhar sua evolução.
+                            </p>
+                        </div>
+                        <a href="https://wa.me/5555984063933?text=Olá!%20Gostaria%20de%20agendar%20uma%20Avaliação%20Física." target="_blank" class="inline-flex items-center gap-2 text-brand-gold font-bold text-sm uppercase mt-6 group-hover:translate-x-1 transition-transform">
+                            Saber Mais <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- HORÁRIOS SECTION -->
+    <section id="horarios" class="py-24 bg-brand-dark">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-5">
+                    <span class="text-brand-gold font-bold uppercase tracking-widest text-xs">Organize seu Treino</span>
+                    <h2 class="font-display text-3xl sm:text-5xl font-black uppercase tracking-tight text-white mt-2 mb-6">
+                        Horários de Funcionamento
+                    </h2>
+                    <p class="text-gray-400 mb-8 leading-relaxed">
+                        Flexibilidade para você treinar no momento em que seu dia render melhor. Abra sua rotina com saúde!
+                    </p>
+                    <div class="p-6 bg-brand-card border border-brand-gold/30 rounded-2xl flex items-center gap-4">
+                        <div class="bg-brand-gold/20 text-brand-gold p-4 rounded-xl text-2xl">
+                            <i class="fa-solid fa-clock"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-white font-bold text-base">Aberto em Horários Flexíveis</h4>
+                            <p class="text-gray-400 text-xs mt-1">Consulte horários de turmas de ritmos via WhatsApp.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-7">
+                    <div class="bg-brand-card rounded-2xl border border-gray-800 p-6 sm:p-8 shadow-2xl">
+                        <div class="space-y-4">
+                            <!-- Segunda a Sexta -->
+                            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center p-4 bg-[#121214] rounded-xl border border-gray-800 hover:border-brand-gold/40 transition-colors gap-2">
+                                <div class="flex items-center gap-3">
+                                    <span class="w-3 h-3 rounded-full bg-emerald-500"></span>
+                                    <span class="font-bold text-white text-base">Segunda a Sexta-feira</span>
+                                </div>
+                                <span class="text-brand-gold font-mono font-bold text-lg bg-black/40 px-4 py-1.5 rounded-lg border border-gray-800">06:00 - 22:00</span>
+                            </div>
+
+                            <!-- Sábados -->
+                            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center p-4 bg-[#121214] rounded-xl border border-gray-800 hover:border-brand-gold/40 transition-colors gap-2">
+                                <div class="flex items-center gap-3">
+                                    <span class="w-3 h-3 rounded-full bg-brand-gold"></span>
+                                    <span class="font-bold text-white text-base">Sábados</span>
+                                </div>
+                                <span class="text-brand-gold font-mono font-bold text-lg bg-black/40 px-4 py-1.5 rounded-lg border border-gray-800">08:00 - 16:00</span>
+                            </div>
+
+                            <!-- Domingos e Feriados -->
+                            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center p-4 bg-[#121214] rounded-xl border border-gray-800 hover:border-brand-gold/40 transition-colors gap-2">
+                                <div class="flex items-center gap-3">
+                                    <span class="w-3 h-3 rounded-full bg-rose-500"></span>
+                                    <span class="font-bold text-white text-base">Domingos e Feriados</span>
+                                </div>
+                                <span class="text-gray-400 font-mono font-semibold text-sm bg-black/40 px-4 py-1.5 rounded-lg border border-gray-800">Consulte escala especial</span>
+                            </div>
+                        </div>
+
+                        <div class="mt-6 pt-6 border-t border-gray-800 text-center text-xs text-gray-400">
+                            * Horários sujeitos a alterações em datas festivas. Entre em contato para maiores informações.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PLANOS E PREÇOS SECTION -->
+    <section id="planos" class="py-24 bg-[#121214] relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-brand-gold font-bold uppercase tracking-widest text-xs">Planos Sob Medida</span>
+                <h2 class="font-display text-3xl sm:text-5xl font-black uppercase tracking-tight text-white mt-2">
+                    INVEŚTA NO SEU FUTURO
+                </h2>
+                <p class="text-gray-400 mt-4">Planos flexíveis sem burocracia. Escolha a melhor opção para atingir suas metas.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Plano Mensal -->
+                <div class="bg-brand-card rounded-2xl border border-gray-800 p-8 flex flex-col justify-between hover:border-gray-700 transition-all duration-300">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-widest text-gray-400">Flexibilidade</span>
+                        <h3 class="font-display font-black text-2xl text-white uppercase mt-2">Plano Mensal</h3>
+                        <p class="text-xs text-gray-400 mt-1">Ideal para quem quer liberdade total</p>
+                        
+                        <div class="my-6">
+                            <span class="text-4xl font-black font-display text-white">R$ 119</span>
+                            <span class="text-gray-400 text-sm">/mês</span>
+                        </div>
+
+                        <ul class="space-y-3 mb-8 text-sm text-gray-300">
+                            <li class="flex items-center gap-3">
+                                <i class="fa-solid fa-check text-brand-gold"></i> Acesso ilimitado à Musculação
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <i class="fa-solid fa-check text-brand-gold"></i> Sem fidelidade contratual
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <i class="fa-solid fa-check text-brand-gold"></i> Avaliação física inicial
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <i class="fa-solid fa-check text-brand-gold"></i> Suporte de instrutores
+                            </li>
+                        </ul>
+                    </div>
+
+                    <a href="https://wa.me/5555984063933?text=Olá!%20Tenho%20interesse%20no%20Plano%20Mensal." 
+                       target="_blank"
+                       class="w-full py-3 px-6 rounded-xl border border-brand-gold text-brand-gold hover:bg-brand-gold hover:text-black font-bold uppercase text-center text-sm transition-all duration-300">
+                        Matricular-se
+                    </a>
+                </div>
+
+                <!-- Plano Trimestral (Destaque) -->
+                <div class="bg-brand-card rounded-2xl border-2 border-brand-gold p-8 flex flex-col justify-between relative transform md:-translate-y-4 shadow-2xl shadow-brand-gold/10">
+                    <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-brand-gold text-black text-xs font-black uppercase tracking-widest px-4 py-1.5 rounded-full shadow-lg">
+                        Mais Popular
+                    </div>
+
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-widest text-brand-gold">Recomendado</span>
+                        <h3 class="font-display font-black text-2xl text-white uppercase mt-2">Plano Trimestral</h3>
+                        <p class="text-xs text-gray-400 mt-1">Foco e constância nos resultados</p>
+                        
+                        <div class="my-6">
+                            <span class="text-4xl font-black font-display text-brand-gold">R$ 99</span>
+                            <span class="text-gray-400 text-sm">/mês</span>
+                        </div>
+
+                        <ul class="space-y-3 mb-8 text-sm text-gray-300">
+                            <li class="flex items-center gap-3">
+                                <i class="fa-solid fa-check text-brand-gold"></i> Acesso total e irrestrito
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <i class="fa-solid fa-check text-brand-gold"></i> Economia garantida
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <i class="fa-solid fa-check text-brand-gold"></i> Reavaliação física periódica
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <i class="fa-solid fa-check text-brand-gold"></i> Ficha de treino personalizada
+                            </li>
+                        </ul>
+                    </div>
+
+                    <a href="https://wa.me/5555984063933?text=Olá!%20Tenho%20interesse%20no%20Plano%20Trimestral." 
+                       target="_blank"
+                       class="w-full py-3 px-6 rounded-xl bg-brand-gold hover:bg-yellow-400 text-black font-extrabold uppercase text-center text-sm transition-all duration-300 shadow-lg">
+                        Matricular-se
+                    </a>
+                </div>
+
+                <!-- Plano Anual -->
+                <div class="bg-brand-card rounded-2xl border border-gray-800 p-8 flex flex-col justify-between hover:border-gray-700 transition-all duration-300">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-widest text-gray-400">Máxima Economia</span>
+                        <h3 class="font-display font-black text-2xl text-white uppercase mt-2">Plano Anual</h3>
+                        <p class="text-xs text-gray-400 mt-1">Compromisso total com sua saúde</p>
+                        
+                        <div class="my-6">
+                            <span class="text-4xl font-black font-display text-white">R$ 84</span>
+                            <span class="text-gray-400 text-sm">/mês</span>
+                        </div>
+
+                        <ul class="space-y-3 mb-8 text-sm text-gray-300">
+                            <li class="flex items-center gap-3">
+                                <i class="fa-solid fa-check text-brand-gold"></i> Menor valor mensal
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <i class="fa-solid fa-check text-brand-gold"></i> Avaliações físicas contínuas
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <i class="fa-solid fa-check text-brand-gold"></i> Direito a congelamento temporário
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <i class="fa-solid fa-check text-brand-gold"></i> Brinde exclusivo Profitness
+                            </li>
+                        </ul>
+                    </div>
+
+                    <a href="https://wa.me/5555984063933?text=Olá!%20Tenho%20interesse%20no%20Plano%20Anual." 
+                       target="_blank"
+                       class="w-full py-3 px-6 rounded-xl border border-brand-gold text-brand-gold hover:bg-brand-gold hover:text-black font-bold uppercase text-center text-sm transition-all duration-300">
+                        Matricular-se
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LOCALIZAÇÃO E CONTATO SECTION -->
+    <section id="contato" class="py-24 bg-brand-dark">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                
+                <!-- Info & Form -->
+                <div class="lg:col-span-6 flex flex-col justify-between">
+                    <div>
+                        <span class="text-brand-gold font-bold uppercase tracking-widest text-xs">Fale Conosco</span>
+                        <h2 class="font-display text-3xl sm:text-5xl font-black uppercase tracking-tight text-white mt-2 mb-6">
+                            VENHA NOS VISITAR
+                        </h2>
+                        <p class="text-gray-400 mb-8 leading-relaxed">
+                            Estamos prontos para atender você e tirar todas as suas dúvidas. Mande uma mensagem ou visite a nossa unidade.
+                        </p>
+
+                        <!-- Endereço & Contatos Info Cards -->
+                        <div class="space-y-4 mb-8">
+                            <div class="flex items-start gap-4 p-4 bg-brand-card rounded-xl border border-gray-800">
+                                <div class="bg-brand-gold/10 text-brand-gold p-3 rounded-lg text-xl">
+                                    <i class="fa-solid fa-location-dot"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-white font-bold text-sm uppercase">Endereço</h4>
+                                    <p class="text-gray-400 text-sm mt-0.5">R. Duque de Caxias, 1280 - Dido</p>
+                                    <p class="text-gray-400 text-sm">Santo Ângelo - RS, 98802-610</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start gap-4 p-4 bg-brand-card rounded-xl border border-gray-800">
+                                <div class="bg-brand-gold/10 text-brand-gold p-3 rounded-lg text-xl">
+                                    <i class="fa-solid fa-phone"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-white font-bold text-sm uppercase">Telefone / WhatsApp</h4>
+                                    <a href="https://wa.me/5555984063933" target="_blank" class="text-brand-gold font-semibold text-sm hover:underline block mt-0.5">
+                                        (55) 98406-3933
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Formulário de Contato Simulado -->
+                    <form id="contact-form" class="bg-brand-card p-6 rounded-2xl border border-gray-800 space-y-4">
+                        <h3 class="text-lg font-bold text-white uppercase mb-2">Envie uma mensagem</h3>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs text-gray-400 uppercase font-semibold mb-1">Nome Completo</label>
+                                <input type="text" required placeholder="Seu nome" class="w-full bg-[#121214] border border-gray-800 rounded-lg px-4 py-3 text-white text-sm focus:outline-none focus:border-brand-gold transition-colors">
+                            </div>
+                            <div>
+                                <label class="block text-xs text-gray-400 uppercase font-semibold mb-1">Telefone / Whats</label>
+                                <input type="tel" required placeholder="(55) 99999-9999" class="w-full bg-[#121214] border border-gray-800 rounded-lg px-4 py-3 text-white text-sm focus:outline-none focus:border-brand-gold transition-colors">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-xs text-gray-400 uppercase font-semibold mb-1">Mensagem</label>
+                            <textarea rows="3" required placeholder="Como podemos te ajudar?" class="w-full bg-[#121214] border border-gray-800 rounded-lg px-4 py-3 text-white text-sm focus:outline-none focus:border-brand-gold transition-colors"></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-brand-gold hover:bg-yellow-400 text-black font-extrabold py-3.5 rounded-xl uppercase text-sm tracking-wider transition-all duration-300">
+                            Enviar Mensagem
+                        </button>
+                        <div id="form-message" class="hidden text-center text-xs text-emerald-400 font-semibold pt-2">
+                            ✓ Mensagem enviada com sucesso! Entraremos em contato em breve.
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Mapa Interativo -->
+                <div class="lg:col-span-6 h-full min-h-[400px]">
+                    <div class="w-full h-full min-h-[400px] rounded-2xl overflow-hidden border border-gray-800 shadow-2xl relative">
+                        <iframe 
+                            title="Localização Profitness Academia"
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3505.341498118047!2d-54.2700000!3d-28.2900000!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjhCsDE3JzI0LjAiUyA1NMKwMTYnMTIuMCJX!5e0!3m2!1spt-BR!2sbr!4v1650000000000!5m2!1spt-BR!2sbr&q=Rua+Duque+de+Caxias+1280+Santo+Angelo+RS" 
+                            class="w-full h-full border-0 grayscale invert contrast-125 opacity-80 hover:opacity-100 transition-opacity" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-black border-t border-gray-900 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                <!-- Logo -->
+                <div class="flex items-center gap-2">
+                    <div class="bg-brand-gold text-black p-1.5 rounded font-black text-lg">
+                        <i class="fa-solid fa-dumbbell"></i>
+                    </div>
+                    <span class="font-display font-black text-xl tracking-wider text-white uppercase">
+                        PRO<span class="text-brand-gold">FITNESS</span>
+                    </span>
+                </div>
+
+                <!-- Copyright -->
+                <div class="text-center text-xs text-gray-500">
+                    &copy; <span id="year"></span> Profitness - Academia. Todos os direitos reservados.
+                    <br>R. Duque de Caxias, 1280 - Dido, Santo Ângelo - RS
+                </div>
+
+                <!-- Social Icons -->
+                <div class="flex items-center gap-4">
+                    <a href="https://wa.me/5555984063933" target="_blank" class="w-10 h-10 rounded-full bg-brand-card border border-gray-800 flex items-center justify-center text-gray-400 hover:text-brand-gold hover:border-brand-gold transition-colors">
+                        <i class="fa-brands fa-whatsapp"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 rounded-full bg-brand-card border border-gray-800 flex items-center justify-center text-gray-400 hover:text-brand-gold hover:border-brand-gold transition-colors">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 rounded-full bg-brand-card border border-gray-800 flex items-center justify-center text-gray-400 hover:text-brand-gold hover:border-brand-gold transition-colors">
+                        <i class="fa-brands fa-facebook-f"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- BOTÃO FLUTUANTE DO WHATSAPP -->
+    <a href="https://wa.me/5555984063933?text=Olá!%20Vim%20pelo%20site%20e%20gostaria%20de%20mais%20informações." 
+       target="_blank" 
+       rel="noopener noreferrer"
+       class="fixed bottom-6 right-6 z-50 bg-emerald-500 hover:bg-emerald-400 text-white p-4 rounded-full shadow-2xl hover:scale-110 transition-all duration-300 flex items-center justify-center group"
+       aria-label="Fale conosco pelo WhatsApp">
+        <i class="fa-brands fa-whatsapp text-3xl"></i>
+        <!-- Tooltip -->
+        <span class="absolute right-16 bg-brand-card text-white text-xs font-bold px-3 py-1.5 rounded-lg border border-gray-800 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-xl pointer-events-none">
+            Fale conosco no WhatsApp
+        </span>
+    </a>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // Set dynamic current year in footer
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Mobile Menu Toggle logic
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Contact Form Simulation Logic
+        const contactForm = document.getElementById('contact-form');
+        const formMessage = document.getElementById('form-message');
+
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            formMessage.classList.remove('hidden');
+            contactForm.reset();
+            setTimeout(() => {
+                formMessage.classList.add('hidden');
+            }, 5000);
+        });
+
+        // Dynamic Header Scroll Behavior
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('shadow-xl', 'bg-brand-dark/95');
+            } else {
+                navbar.classList.remove('shadow-xl', 'bg-brand-dark/95');
+            }
+        });
+    </script>
+</body>
+</html>
